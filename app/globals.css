@@ -73,3 +73,11 @@ body {
 .glow-text {
   text-shadow: 0 0 5px #39ff1480;
 }
+
+/* Hide Next.js Dev Tools */
+[data-nextjs-toast], 
+[data-nextjs-toast-errors="true"],
+nextjs-portal,
+#next-route-announcer {
+  display: none !important;
+}
