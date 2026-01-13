@@ -27,7 +27,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 overflow-hidden rounded-lg">
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="MagnaCV Logo"
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"

@@ -10,8 +10,7 @@ export default function Footer() {
         <p className="opacity-50">© {new Date().getFullYear()} MagnaCV. The Invisible ATS.</p>
         
         <div className="flex gap-8">
-            <a href="#" className="hover:text-[--accent-primary] transition-colors">Twitter</a>
-            <a href="#" className="hover:text-[--accent-primary] transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/iamutkarshyadav/" target="_blank" rel="noopener noreferrer" className="hover:text-[--accent-primary] transition-colors">LinkedIn</a>
         </div>
       </div>
     </footer>
