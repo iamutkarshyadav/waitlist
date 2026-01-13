@@ -12,6 +12,7 @@ export default function Hero() {
   const textRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
   const scrambleRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -53,22 +54,22 @@ export default function Hero() {
       // Trigger scramble after a slight delay
       setTimeout(scrambleText, 800);
 
-      // Visual Reveal (Animate the container)
+      // Visual Reveal (Animate the INTRO wrapper)
       tl.fromTo(
-        visualRef.current,
+        introRef.current,
         { opacity: 0, scale: 0.8 },
         { opacity: 1, scale: 1, duration: 1.5, ease: "power2.out" },
         "-=0.5"
       );
 
-      // Scroll Parallax for Visual (Container only)
+      // Scroll Parallax for Visual (Animate the OUTER wrapper)
       gsap.to(visualRef.current, {
         y: 100,
         opacity: 0,
         scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "bottom 30%",
+            end: "bottom center",
             scrub: true,
         },
       });
@@ -149,8 +150,9 @@ export default function Hero() {
         {/* 3D Visual Element Container */}
         <div
           ref={visualRef}
-          className="relative w-[300px] h-[400px] md:w-[600px] md:h-[400px] mx-auto z-10 perspective-1000"
+          className="relative w-[90vw] h-[300px] md:w-[80vw] md:max-w-6xl md:h-[600px] mx-auto z-10 perspective-1000"
         >
+          <div ref={introRef} className="w-full h-full">
            {/* Inner Tilt Element */}
            <div ref={tiltRef} className="w-full h-full relative" style={{ transformStyle: "preserve-3d" }}>
                 {/* Main Card */}
@@ -164,35 +166,14 @@ export default function Hero() {
                         <div className="ml-auto w-24 h-4 rounded-full bg-white/10" />
                     </div>
 
-                    {/* Content */}
-                    <div className="flex-1 p-6 relative">
-                        {/* Resume Skeleton */}
-                        <div className="space-y-4 opacity-30 blur-[1px]">
-                            <div className="h-8 w-1/3 bg-white/20 rounded-md" />
-                            <div className="flex gap-4">
-                                <div className="h-32 w-1/4 bg-white/10 rounded-md" />
-                                <div className="flex-1 space-y-2">
-                                    <div className="h-4 w-full bg-white/10 rounded" />
-                                    <div className="h-4 w-5/6 bg-white/10 rounded" />
-                                    <div className="h-4 w-4/6 bg-white/10 rounded" />
-                                </div>
-                            </div>
-                            <div className="h-40 w-full bg-white/5 rounded-md" />
-                        </div>
-
-                        {/* Scanning overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[--accent-primary]/10 to-transparent h-[20%] w-full animate-[scan_3s_ease-in-out_infinite] border-b border-[--accent-primary]/50 shadow-[0_0_20px_rgba(57,255,20,0.3)] pointer-events-none" />
-                        
-                        {/* Floating Analysis Badges (3D elements) */}
-                        <div className="absolute top-1/4 -right-12 bg-[#0B0D10] border border-[--accent-primary] p-3 rounded-lg shadow-[0_0_30px_rgba(57,255,20,0.2)] transform translate-z-20 animate-pulse">
-                            <div className="text-[--accent-primary] text-xs font-mono font-bold">MATCH: 98%</div>
-                        </div>
-
-                        <div className="absolute bottom-1/3 -left-8 bg-[#0B0D10] border border-red-500/50 p-3 rounded-lg shadow-lg transform translate-z-10">
-                            <div className="text-red-400 text-xs font-mono font-bold flex items-center gap-2">
-                                <span>⚠ KEYWORD MISSING</span>
-                            </div>
-                        </div>
+                    {/* Content - Image */}
+                    <div className="relative flex-1 bg-black/50 overflow-hidden group">
+                         <img 
+                            src="/dashboard-preview.png" 
+                            alt="MagnaCV Dashboard" 
+                            className="w-full h-full object-cover object-top opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+                         />
+                         
 
                     </div>
                 </div>
@@ -200,6 +181,7 @@ export default function Hero() {
                 {/* Background Glow Behind Card */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[--accent-primary] opacity-5 blur-[80px] -z-10 pointer-events-none transform translate-z-[-50px]" />
            </div>
+          </div>
         </div>
       </div>
     </section>
